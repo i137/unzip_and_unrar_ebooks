@@ -62,12 +62,14 @@ echo ""
 echo " Starting extraction of .zip files..."
 echo ""
 COUNT=0
+SKIPS=0
 for DIR in $(ls); do
 
     # If $DIR is not a dir, we don't want to try to cd into it...
     if [ ! -d "$DIR" -o -L "$DIR" ]; then
         echo "     $DIR"
         echo "     \`--> Not a directory, skipping..."
+        ((SKIPS++))
         continue
     fi
 
@@ -75,14 +77,17 @@ for DIR in $(ls); do
     if [[ $DIR =~ $SKIP1 ]]; then
         echo "     $DIR"
         echo "     \`--> matches $SKIP1, skipping..."
+        ((SKIPS++))
         continue
     elif [[ $DIR =~ $SKIP2 ]]; then
         echo "     $DIR"
         echo "     \`--> matches $SKIP2, skipping..."
+        ((SKIPS++))
         continue
     elif [[ $DIR =~ $SKIP3 ]]; then
         echo "     $DIR"
         echo "     \`--> matches $SKIP3, skipping..."
+        ((SKIPS++))
         continue
     fi
 
@@ -133,7 +138,7 @@ rm -f *.rar *.r[0-9][0-9] *.txt *.nfo
 
 
 echo ""
-echo " All done! Processed $COUNT directories."
+echo " All done! Processed $COUNT eBook dirs, not counting $SKIPS skipped dirs."
 
 
 
