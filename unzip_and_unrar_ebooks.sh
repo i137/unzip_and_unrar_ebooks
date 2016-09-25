@@ -132,7 +132,7 @@ echo " All .rar archives have been extracted."
 echo ""
 echo " The rar archives and any .txt/.nfo files will now be removed..."
 
-rm -f *.rar *.r[0-9][0-9] *.txt *.nfo
+rm -f *.rar *.r[0-9][0-9] *.txt *.nfo file_id.diz
 
 
 
