@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Title:        unzip_and_unrar_ebooks.sh
-# Version:      0.9
 # Author:       ikaroz <i@algorhythm.cc>
 # Date:         2016-09-23
 # Purpose:      Conveniently unpack eBooks from scene releases.
@@ -16,7 +15,7 @@
 
 
 # Variable assignment
-VERSION="0.9"
+VERSION="0.9.3"
 TARGET="/home/i/Temp/"                                      ; # Where to place all books
 SKIP1="[._-]([Ee][Pp][Uu][Bb]|[Cc][Oo][Mm][Ii][Cc])[._-]"   ; # Skip EPUB/Comic releases
 SKIP2="\((incomplete|no-nfo|no-sfv|no-sample)\)-"           ; # Skip (incomplete)- (no-nfo)- etc.
