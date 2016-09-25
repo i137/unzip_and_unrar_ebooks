@@ -15,7 +15,7 @@
 
 
 # Variable assignment
-VERSION="0.9.3"
+VERSION="0.9.4"
 TARGET="/home/i/Temp/"                                      ; # Where to place all books
 SKIP1="[._-]([Ee][Pp][Uu][Bb]|[Cc][Oo][Mm][Ii][Cc])[._-]"   ; # Skip EPUB/Comic releases
 SKIP2="\((incomplete|no-nfo|no-sfv|no-sample)\)-"           ; # Skip (incomplete)- (no-nfo)- etc.
@@ -25,7 +25,7 @@ SKIP3="[._-]([Dd][Ii][Rr]|[Nn][Ff][Oo])[Ff][Ii][Xx][._-]"   ; # Skip dirfix/nfof
 
 # Runtime header
 echo ""
-echo " unzip_and_unrar_ebooks.sh v$VERSION (c) 2016 ikaroz <i@algorhythm.cc>"
+echo -e " \e[1munzip_and_unrar_ebooks.sh v$VERSION (c) 2016 ikaroz <i@algorhythm.cc>\e[0m"
 echo ""
 echo " This program comes with ABSOLUTELY NO WARRANTY. This is free software,"
 echo " and you are welcome to redistribute it under certain conditions."
@@ -44,7 +44,7 @@ fi
 if [[ ! ${PWD##*/} =~ ^([0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]|[0-9][0-9][0-9][0-9]-[0-9][0-9]|[0-9][0-9][0-9][0-9])$ ]]; then
 
     echo ""
-    echo " We are not in a day dir or month dir."
+    echo " We are not in a day dir or month dir:"
     echo " --> $PWD"
     echo ""
     echo " The script will now exit."
@@ -74,25 +74,22 @@ for DIR in $(ls); do
 
     # If $DIR matches any of the skiplists, then... skip it! :)
     if [[ $DIR =~ $SKIP1 ]]; then
-        echo "     $DIR"
-        echo "     \`--> matches $SKIP1, skipping..."
+        echo -e " \e[0;31mx\e[0;00m $DIR - skipping..."
         ((SKIPS++))
         continue
     elif [[ $DIR =~ $SKIP2 ]]; then
-        echo "     $DIR"
-        echo "     \`--> matches $SKIP2, skipping..."
+        echo -e " \e[0;31mx\e[0;00m $DIR - skipping..."
         ((SKIPS++))
         continue
     elif [[ $DIR =~ $SKIP3 ]]; then
-        echo "     $DIR"
-        echo "     \`--> matches $SKIP3, skipping..."
+        echo -e " \e[0;31mx\e[0;00m $DIR - skipping..."
         ((SKIPS++))
         continue
     fi
 
     # Everything checks out -- enter $DIR and do the magic
     cd $DIR
-    echo " --> $DIR"
+    echo -e " \e[0;32mo\e[0;00m $DIR"
     # unzip options:
     #   -x file1 file2 *.ext    Exclude these files
     #   -d /path/to/folder/     Destination for extracted files
@@ -117,27 +114,28 @@ echo ""
 cd "$TARGET"
 for ARCHIVE in $(ls *.rar); do
 
-    echo " --> $ARCHIVE"
+    echo -n " $ARCHIVE ... "
     # unrar options:
     #   e        Extract files to current directory
     #   -c-      Do not display comments
     #   -inul    Disable all messages
     #   .y       Assume Yes on all queries
     unrar e -c- -inul -y "$ARCHIVE"
+    echo "OK"
 
 done
 
 echo ""
 echo " All .rar archives have been extracted."
 echo ""
-echo " The rar archives and any .txt/.nfo files will now be removed..."
+echo " The .rar archives, file_id.diz, and any .txt/.nfo files, will now be removed..."
 
 rm -f *.rar *.r[0-9][0-9] *.txt *.nfo file_id.diz
 
 
 
 echo ""
-echo " All done! Processed $COUNT eBook dirs, not counting $SKIPS skipped dirs."
+echo -e " \e[1mAll done!\e[0m Processed $COUNT eBook dirs, not counting $SKIPS skipped dirs."
 
 
 
