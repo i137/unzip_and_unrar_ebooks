@@ -17,7 +17,7 @@
 
 # Variable assignment
 VERSION="0.9"
-TARGET="/home/i/Temp"                                       ; # Where to place all books
+TARGET="/home/i/Temp/"                                      ; # Where to place all books
 SKIP1="[._-]([Ee][Pp][Uu][Bb]|[Cc][Oo][Mm][Ii][Cc])[._-]"   ; # Skip EPUB/Comic releases
 SKIP2="\((incomplete|no-nfo|no-sfv|no-sample)\)-"           ; # Skip (incomplete)- (no-nfo)- etc.
 SKIP3="[._-]([Dd][Ii][Rr]|[Nn][Ff][Oo])[Ff][Ii][Xx][._-]"   ; # Skip dirfix/nfofix
@@ -66,22 +66,22 @@ for DIR in $(ls); do
 
     # If $DIR is not a dir, we don't want to try to cd into it...
     if [ ! -d "$DIR" -o -L "$DIR" ]; then
-        echo " -x- $DIR"
+        echo "     $DIR"
         echo "     \`--> Not a directory, skipping..."
         continue
     fi
 
     # If $DIR matches any of the skiplists, then... skip it! :)
     if [[ $DIR =~ $SKIP1 ]]; then
-        echo " -x- $DIR"
+        echo "     $DIR"
         echo "     \`--> matches $SKIP1, skipping..."
         continue
     elif [[ $DIR =~ $SKIP2 ]]; then
-        echo " -x- $DIR"
+        echo "     $DIR"
         echo "     \`--> matches $SKIP2, skipping..."
         continue
     elif [[ $DIR =~ $SKIP3 ]]; then
-        echo " -x- $DIR"
+        echo "     $DIR"
         echo "     \`--> matches $SKIP3, skipping..."
         continue
     fi
