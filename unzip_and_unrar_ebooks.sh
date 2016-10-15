@@ -32,13 +32,11 @@ reset=$(tput sgr0)
 
 
 # Runtime header
-header() {
-    echo ""
-    echo -e " ${bold}unzip_and_unrar_ebooks.sh v$version (c) 2016 ikaroz <i@algorhythm.cc>$reset"
-    echo ""
-    echo " This program comes with ABSOLUTELY NO WARRANTY. This is free software,"
-    echo " and you are welcome to redistribute it under certain conditions."
-}
+echo ""
+echo -e " ${bold}unzip_and_unrar_ebooks.sh v$version (c) 2016 ikaroz <i@algorhythm.cc>$reset"
+echo ""
+echo " This program comes with ABSOLUTELY NO WARRANTY. This is free software,"
+echo " and you are welcome to redistribute it under certain conditions."
 
 
 
